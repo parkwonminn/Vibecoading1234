@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PlantParent - Nurtured Growth</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad5",
+                    "inverse-primary": "#a9cfb7",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary-fixed-variant": "#354c41",
+                    "on-secondary-container": "#76300d",
+                    "secondary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "on-tertiary-container": "#a4bdaf",
+                    "on-surface": "#1b1c19",
+                    "on-primary-container": "#9ac0a7",
+                    "secondary-fixed": "#ffdbcd",
+                    "outline-variant": "#c1c8c1",
+                    "surface-container-low": "#f5f3ee",
+                    "secondary-container": "#fd9a6f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "primary": "#163826",
+                    "on-primary-fixed-variant": "#2c4e3b",
+                    "tertiary": "#20362d",
+                    "on-background": "#1b1c19",
+                    "surface-tint": "#436651",
+                    "surface": "#fbf9f4",
+                    "primary-fixed": "#c5ecd2",
+                    "primary-container": "#2d4f3c",
+                    "outline": "#727973",
+                    "surface-variant": "#e4e2dd",
+                    "surface-container-highest": "#e4e2dd",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#364d42",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "surface-container-high": "#eae8e3",
+                    "on-secondary-fixed": "#360f00",
+                    "secondary": "#964824",
+                    "on-primary-fixed": "#002112",
+                    "on-surface-variant": "#424843",
+                    "tertiary-fixed-dim": "#b3ccbf",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#cee9da",
+                    "on-tertiary-fixed": "#092017",
+                    "inverse-surface": "#30312e",
+                    "error": "#ba1a1a",
+                    "background": "#fbf9f4",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "container-padding-desktop": "40px",
+                    "unit": "8px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "headline-md": ["Noto Serif"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "display": ["Noto Serif"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Noto Serif"],
+                    "headline-lg": ["Noto Serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(251, 249, 244, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .ambient-moss-shadow {
+            box-shadow: 0 10px 30px -10px rgba(45, 79, 60, 0.15);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .bento-item-large {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+        }
+        .asymmetric-gallery {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex flex-col h-screen py-8 px-4 gap-stack-md bg-surface-container w-64 fixed left-0 border-r border-outline-variant/10">
+<div class="px-4 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PlantParent</h1>
+<p class="font-label-sm text-on-surface-variant">Nurtured Growth</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl transition-all translate-x-1" href="./code.html">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-md text-label-md">My Collection</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 rounded-xl transition-all" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="font-label-md text-label-md">Watering Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 rounded-xl transition-all" href="../sunlight_tracker_guide/code.html">
+<span class="material-symbols-outlined">light_mode</span>
+<span class="font-label-md text-label-md">Sunlight Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 rounded-xl transition-all" href="../fertilization_reminders/code.html">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-label-md text-label-md">Fertilization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 pb-24 md:pb-8">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 glass-nav border-b border-outline-variant/10">
+<div class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="md:hidden material-symbols-outlined text-primary">menu</span>
+<h2 class="font-headline-md text-headline-md font-bold text-primary hidden md:block">Overview</h2>
+<h2 class="font-headline-md text-headline-md font-bold text-primary md:hidden">PlantParent</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex bg-surface-container-low rounded-full px-4 py-2 items-center gap-2 w-64 border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-on-surface-variant/60" placeholder="Search plants..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-variant/20 rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly urban gardener, medium shot, smiling warmly. The aesthetic is clean and modern with soft sunlight filtering through nearby green leaves, creating a calm and professional atmosphere that aligns with the premium PlantParent brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXDUKWj6SkcORsDyKgkpyJt5y1r83JHEOorwag0bhmEQLq2hN_NokpgVLcDV5jxJOd2L_R14cq02615-ayypveXR48omcQ8Frv99yWXIhPaS_cOyjV05lQBxOK6s47_KgzHPIer69rGIENQVDxwAJ0j409Zk2d0WqmDP6ACnlfoDdVSW2CAZSh2x5jyG-K4xD4Mt4-CaYOxvsnINqcMtXatnMKKhAh8fD0zel9hu076DBIBh1oW7Up9kKHpIC7RtxUFR6L4P9tDmw"/>
+</div>
+</div>
+</div>
+</header>
+<div class="px-container-padding-mobile md:px-container-padding-desktop max-w-7xl mx-auto py-8 space-y-stack-lg">
+<!-- Hero / Daily Attention Section -->
+<section>
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Nurture Today</h3>
+<p class="font-body-md text-on-surface-variant">3 plants are waiting for your care ritual.</p>
+</div>
+<button class="hidden sm:flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all ambient-moss-shadow">
+<span class="material-symbols-outlined">add</span>
+                        Add New Plant
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Attention Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col gap-4 border border-outline-variant/10 hover:border-primary/20 transition-all group">
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up macro photography of a lush Monstera Deliciosa leaf, showing intricate vein patterns and vibrant emerald green tones. The lighting is soft and diffused, creating a serene, organic, and high-end editorial feel that emphasizes the plant's healthy texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLYSxAYUG4Iu93OCcig7kVGxMkyVHTOJiSBKRboUQFVLu8WmWNA4cE9nxCwNODkx_hktaTVtd_d3M8lV4mgaAGBRgRLVdoidIfI1tIgi_7_8DEjTu50H1X5aV057IsszGAlDpi2bJrx8Akbyk9yRwLwim7K2RkjIlgvg4eKqqhWCFrR53-EFT6PFq68SJDWECUYYF0Pz33gu44uUVBh_8ZLcHe3LQl8FXmc_23mqEJho-184XSsaRxlTMjJgsmWFdgYqw5qH451tg"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-primary">Monstera</h4>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 bg-[#e1f5fe] text-[#01579b] rounded-full text-[10px] font-bold uppercase tracking-wider">Water</span>
+<span class="px-2 py-0.5 bg-[#fff9c4] text-[#fbc02d] rounded-full text-[10px] font-bold uppercase tracking-wider">Sunlight</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md text-sm transition-all active:scale-95">Mark as Done</button>
+</div>
+<!-- Attention Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col gap-4 border border-outline-variant/10 hover:border-primary/20 transition-all group">
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautiful Fiddle Leaf Fig tree in a minimalist clay pot, captured in a bright, airy room with soft-filled lighting. The image focuses on the large, waxy, scalloped leaves that radiate a healthy green glow, conveying a sense of mindful urban gardening and calm home life." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkJnXTPyAkF8sm21I9qqRkCH3qHgJpmTJ7T-4A5-qQ0YtYgu7Pj1w2y6RBsQI4JA76AqRb7LEt2MBsqzN0qjg5o4gjBnh2vaXNqxrETRgs3D4trQxWA1e8ZNH9tfOeXToMt-KJ4mGQTWkQgBMtxzW7ApjwefRnVfZ6YgxpizQDHU3cWtGmtmBADObOoXdIpXGaUFbkRxbwfvYTUJgb-OIq8Lf_llr1bCv0UWT8lcHrWmeX94Bb9SybOADGsIkj-zJsgGMsgDEJP3c"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-primary">Fiddle Leaf</h4>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 bg-[#f3e5f5] text-[#7b1fa2] rounded-full text-[10px] font-bold uppercase tracking-wider">Fertilize</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md text-sm transition-all active:scale-95">Mark as Done</button>
+</div>
+<!-- Attention Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col gap-4 border border-outline-variant/10 hover:border-primary/20 transition-all group">
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cascading String of Pearls plant in a white hanging ceramic planter. The delicate, pea-like succulent foliage spills gracefully against a neutral-toned wall. The lighting is natural and bright, highlighting the organic minimalism and tranquil aesthetic of the PlantParent app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzEMHnatj6SsymhkU2YsF6sv9vIT1dvfmnzf_q7_N3JYHf5mcTUj6emXoqr80O-rnt0Cv6JPwsX1qZV3-DKjixfmoqx4E1KMcXCLXuuKz_ebEOdM32wejLjQANBNInUjBTcJAijUF-eiOb4gUoYI4oqReGrwT_QFgnG7gCQ9LGnMYrrcRg4IvBg666LPbp3XXSLHpIfcXvRoooPaUTA8zX2z_OLe67k7q9ZXEEXvGtBXx3bqP5pmliEIoOwgEm-c6vrUgKc0vhkSI"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-primary">String of Pearls</h4>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 bg-[#e1f5fe] text-[#01579b] rounded-full text-[10px] font-bold uppercase tracking-wider">Water</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md text-sm transition-all active:scale-95">Mark as Done</button>
+</div>
+</div>
+</section>
+<!-- My Collection Grid -->
+<section>
+<div class="flex items-center gap-4 mb-6">
+<h3 class="font-headline-lg text-headline-lg text-primary">My Collection</h3>
+<div class="h-[2px] flex-1 bg-surface-container-highest"></div>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                        View All
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="bento-grid">
+<!-- Plant Card 1 (Large) -->
+<div class="bento-item-large relative group rounded-xl overflow-hidden ambient-moss-shadow">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A large, majestic Snake Plant in a tall terracotta pot, positioned as a centerpiece in a modern, sunlit living room. The lighting is high-key and clean, showcasing the vertical architectural lines of the leaves and the warm clay tones of the pot, embodying a contemporary organic minimalism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCihmtRTJHz5OPEfmyw0_2xAc-Uyv_6VxSs_mZCrcdlQRcIS32Igb7cDZ0D4gCsXglFwZHLTPQk4CbdawhG2oX4alObi3pJUpKK-fOdXw-ICDjd8CZuh9BX4KlRFNkPlvisUeFd_sn69bC1TyQdnUlcqRmWxv1ADMccqFpjTNpsFV-GIYsuzPS_I_oexU3jssVnUh5cW9byBQmApbS3KGDV9z4swbVh0MhFzkIT-p2IRsySVFbgC9PqE2t4DyPlaVGr97nnIETyhks"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full text-white">
+<p class="font-label-sm uppercase tracking-widest text-primary-fixed/80 mb-1">Sansevieria</p>
+<h4 class="font-headline-md text-white text-2xl">Desert Blade</h4>
+<div class="flex gap-4 mt-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg text-blue-200">water_drop</span>
+<span class="font-label-md text-sm">85% Moisture</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg text-yellow-200">wb_sunny</span>
+<span class="font-label-md text-sm">Medium Light</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Plant Card 2 -->
+<div class="relative group rounded-xl overflow-hidden ambient-moss-shadow aspect-square md:aspect-auto">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up of a Peace Lily with its iconic white spathe flower and dark green foliage. The scene is lit with a soft-focus background, emphasizing the purity and calm associated with indoor gardening. The color palette is composed of rich greens, stark whites, and earthy shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCah-cpdQI9Nne8R66AlEivUiT0uB-Vnuq-JggxuT1Qxvhv8uq5Db8jlfxrXBeDXFHE2UCFPfT_liY3b0k1b6cMRLDUFNwyp57Y4OgQ0qyQxH_uVaCc8bJEkYY6lEUrVzvOooKvOIfUcAZh_93-evlzUZ2qYgnC_nNbnFK9iDEMzjJtvRNVIIk5eLbfjo4sJxhmRjJbEMLwlpr-aGm--elBD0UFb4oWrMaUABt9pmGsL6cB6PuLoXJp1QZZpG9qvbsjQIA9P9mdbw0"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="font-label-md text-white">Peace Lily</h4>
+</div>
+</div>
+<!-- Plant Card 3 -->
+<div class="relative group rounded-xl overflow-hidden ambient-moss-shadow aspect-square md:aspect-auto">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A Bird of Paradise plant in a bright corner, its large fan-like leaves catching the afternoon golden hour light. The image captures a serene, high-end editorial mood, with long shadows and warm highlights that evoke a peaceful, nurtured home environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgXrR8M6Km2Acpobb_3Cgm-z6I3ykP_UMj_OJc6NrCaOUcyaJf1rIiazJfffXyvOMTkcG5CN--FxlnhDN0-E3aH8qMAOw0Ia2hi5PsPbGXcXdb88nA4rAn6lywMJWmm82SJfNyVJ_fN42mPhpTfsohtTtluJ8wzp8nnFwFSE1rqlbFbG6CT7hOZqfoDiA5SacvllstOTW1ERyopCDZLVeC89UlEvunHYOmtL1AIR3K0Z0niph8Uk3x6TwnOWyRjDgmOBc_1bV9Gbg"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="font-label-md text-white">Crane Blossom</h4>
+</div>
+</div>
+<!-- Plant Card 4 -->
+<div class="relative group rounded-xl overflow-hidden ambient-moss-shadow aspect-square md:aspect-auto">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An Aloe Vera plant in a small ceramic pot, showing the thick, serrated, translucent leaves of the succulent. The lighting is crisp and bright, highlighting the plant's structural beauty and vibrant green hues against a soft clay-colored background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCORAcpj0ZsRSYPK62gtn1a71W4dxdfnCrj6_46dvpeoydnpzQQxwtVhcvkLdDW8pmGRYxQ6l73KWzy1ml4_mm0f5wrmf7mJZNZhwaKONKMevtOZRjdRCZScH1Mznyxv75_p2LirN9BB_Fdk-4vjRipPtqeZ29IX79O6vhEWdjpMebDvORqt9oHdoxXhHP0XPN3H8xTxfVExiN3Tn8in6XGhiqW90NLioYCrzM2tPIbdj_XXTP6lykeEV6eOCcXeJ6ufZMO5jpkWKo"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="font-label-md text-white">Aloe Vera</h4>
+</div>
+</div>
+<!-- Plant Card 5 -->
+<div class="relative group rounded-xl overflow-hidden ambient-moss-shadow aspect-square md:aspect-auto">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A Pothos plant with variegated leaves trailing down from a bookshelf. The mix of light yellow and deep green colors is vibrant and healthy. The shot is captured in a minimalist home office setup, emphasizing a productive yet calm atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8nQI-oZC4cbYrvuYUFiCIe250WsT5tJWrKLCaqKN0xdVwS1RvQhGWSeNkrxnAGB644-MeidGAS3L7NqUFSENSBA802maK2DjRfZ3CgeYTnl-w41jgrnRcVqnJWqo12tkvqodbauZNRH8jmVkDXHrHo4n9Ia0ANhPDXVokbrjlXecuIb4G-WRvVx8J4YA1zDeWNwL-rjE1W8ZFMUECVAtvpjh-NPvllJN2YZ2lylVLHNcgeD2YRfk62Frm4bNLH9CJg7jta9NNdzk"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="font-label-md text-white">Golden Pothos</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Care Stats / Insights -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-high rounded-3xl p-8 flex flex-col gap-6">
+<h4 class="font-headline-md text-primary">Moisture Tracker</h4>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface">Overall Soil Health</span>
+<span class="font-label-md text-primary">Good (78%)</span>
+</div>
+<div class="h-3 bg-primary-fixed/30 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm">Your indoor garden has consistent hydration levels. Remember to check the Fiddle Leaf Fig's soil today.</p>
+</div>
+</div>
+<div class="bg-primary text-on-primary rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline-md mb-2">Growth Tip</h4>
+<p class="font-body-md opacity-80">Plants grow faster during the golden hour. Try rotating your Desert Blade 45 degrees every week for even leaf distribution.</p>
+</div>
+<span class="material-symbols-outlined text-[120px] absolute -right-4 -bottom-4 opacity-10 rotate-12">spa</span>
+<button class="relative z-10 mt-8 self-start px-6 py-2 bg-on-primary text-primary rounded-full font-label-md text-sm hover:bg-primary-fixed transition-colors">Learn More</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-nav border-t border-outline-variant/10 px-4 py-3 flex justify-around items-center z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="./code.html">
+<span class="material-symbols-outlined font-bold">potted_plant</span>
+<span class="text-[10px] font-label-md">Collection</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="text-[10px] font-label-md">Water</span>
+</a>
+<a class="flex flex-col items-center justify-center w-12 h-12 bg-primary text-on-primary rounded-full -mt-10 ambient-moss-shadow" href="#">
+<span class="material-symbols-outlined text-2xl">add</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../sunlight_tracker_guide/code.html">
+<span class="material-symbols-outlined">light_mode</span>
+<span class="text-[10px] font-label-md">Sun</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-md">More</span>
+</a>
+</nav>
+<!-- FAB for adding plant (Desktop Only as per shell rules) -->
+<button class="hidden md:flex fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full items-center justify-center ambient-moss-shadow hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+<script>
+        // Micro-interaction: Mark as done logic simulation
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === "Mark as Done") {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('div');
+                    card.style.opacity = '0.5';
+                    card.style.pointerEvents = 'none';
+                    this.innerText = "Completed";
+                    this.classList.remove('bg-primary');
+                    this.classList.add('bg-on-surface-variant');
+                });
+            }
+        });
+    </script>
+</body></html>

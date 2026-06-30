@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PlantParent - Fertilization Schedule</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad5",
+                    "inverse-primary": "#a9cfb7",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary-fixed-variant": "#354c41",
+                    "on-secondary-container": "#76300d",
+                    "secondary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "on-tertiary-container": "#a4bdaf",
+                    "on-surface": "#1b1c19",
+                    "on-primary-container": "#9ac0a7",
+                    "secondary-fixed": "#ffdbcd",
+                    "outline-variant": "#c1c8c1",
+                    "surface-container-low": "#f5f3ee",
+                    "secondary-container": "#fd9a6f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "primary": "#163826",
+                    "on-primary-fixed-variant": "#2c4e3b",
+                    "tertiary": "#20362d",
+                    "on-background": "#1b1c19",
+                    "surface-tint": "#436651",
+                    "surface": "#fbf9f4",
+                    "primary-fixed": "#c5ecd2",
+                    "primary-container": "#2d4f3c",
+                    "outline": "#727973",
+                    "surface-variant": "#e4e2dd",
+                    "surface-container-highest": "#e4e2dd",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#364d42",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "surface-container-high": "#eae8e3",
+                    "on-secondary-fixed": "#360f00",
+                    "secondary": "#964824",
+                    "on-primary-fixed": "#002112",
+                    "on-surface-variant": "#424843",
+                    "tertiary-fixed-dim": "#b3ccbf",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#cee9da",
+                    "on-tertiary-fixed": "#092017",
+                    "inverse-surface": "#30312e",
+                    "error": "#ba1a1a",
+                    "background": "#fbf9f4",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "container-padding-desktop": "40px",
+                    "unit": "8px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "headline-md": ["Noto Serif"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "display": ["Noto Serif"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Noto Serif"],
+                    "headline-lg": ["Noto Serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c8c1;
+            border-radius: 10px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex overflow-hidden">
+<!-- SideNavBar (The Anchor) -->
+<aside class="hidden md:flex flex-col h-screen py-8 px-4 gap-stack-md bg-surface-container dark:bg-surface-container-high h-full w-64 docked left-0 flex-shrink-0 z-50">
+<div class="flex flex-col items-center mb-8 px-2">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-primary text-2xl">eco</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary text-center">PlantParent</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Nurtured Growth</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-all rounded-xl" href="../plant_care_dashboard_overview/code.html">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-md text-label-md">My Collection</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-all rounded-xl" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="font-label-md text-label-md">Watering Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-all rounded-xl" href="../sunlight_tracker_guide/code.html">
+<span class="material-symbols-outlined">light_mode</span>
+<span class="font-label-md text-label-md">Sunlight Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl translate-x-1 duration-200" href="./code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-label-md text-label-md">Fertilization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-all rounded-xl mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<main class="flex-1 flex flex-col h-screen relative overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-inverse-primary docked full-width top-0 z-40">
+<div class="flex justify-between items-center w-full px-container-padding-desktop py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="md:hidden w-10 h-10 bg-primary-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container">menu</span>
+</div>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-variant/30 border-none rounded-full focus:ring-2 focus:ring-primary font-label-md text-label-md w-64" placeholder="Search collection..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/20 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a friendly-looking middle-aged woman with warm lighting and a soft bokeh background featuring indoor plants. She is wearing a simple linen shirt in Earth tones, fitting the organic minimalism aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0WJKznP6W6bU4RA4Z_ExZZBx-vJO52MRCMs7n3wGnVm4FMU3k7EuSnTCqu9NoaV0fvs_rFxNCQR9qWXgRuaSsvsVuK-8ahgcMXpJJzFcjuK-fiuJKSbvSTON4cnXxJ-hxsIlhc1ASZKBOHeTjIe0cW8kvOW3wqjHTHmxePb0FhA5cGUb9X_6syHaCLizVW5P7oRJQ8INiNccP8Qj_poXACCQSb3zlkphgbB3oJyyOCmsSB5Lg-5vv9ccBEJcUyUh2YJUO-VxDlQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg">
+<!-- Hero Header -->
+<div class="mb-stack-lg">
+<h2 class="font-display text-display text-primary mb-2">Nutritional Balance</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Keep your jungle thriving. Track fertilization cycles tailored to each species' growth patterns and active seasons.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Schedule List -->
+<div class="lg:col-span-8 space-y-gutter">
+<section class="bg-surface-container-low rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">event_upcoming</span> Upcoming Tasks
+                                </h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-variant/20 rounded-full font-label-md text-label-md text-primary hover:bg-surface-variant/40 transition-colors">This Week</button>
+<button class="px-4 py-2 text-on-surface-variant font-label-md text-label-md hover:text-primary">Monthly View</button>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Plant Item 1 -->
+<div class="group flex items-center gap-4 p-4 bg-surface rounded-xl hover:shadow-lg transition-all duration-300 cursor-pointer border border-transparent hover:border-primary-fixed">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up photograph of a vibrant Swiss Cheese Plant (Monstera Deliciosa) leaf with sunlight filtering through its iconic holes. The lighting is soft and natural, emphasizing the deep emerald greens and organic textures, shot in a high-end editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwRWHeR2W1qgY7R2jDEY1L9wjv5olRrbu3Hw9k16fBo2xd714nkrTJov8XYKbbKxhA5VdYapeCClip4v4wNdr0R_9vNISd5aabYUrLKCDQZbsb8QLV8KcsjqsOBTwM5tkRK3XNZmXCzZ8ug1bK_iAiJj4SUcY_nvkiRUPSSLcCj0WxJGQui5EaA259ZYbQfVzL5wVub2q_JiHiKWjjzVl-1Iv5BzhezlBvKi-Ii0zk0euddym0P5Dn7J2e99zMfK9rls8qGmWI8s"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-primary">Monstera Deliciosa</h4>
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded font-label-sm text-label-sm">In Growing Season</span>
+</div>
+<div class="flex gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span class="text-label-sm">Last: May 12</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="text-label-sm font-bold">Next: June 02</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">Mark Done</button>
+</div>
+<!-- Plant Item 2 -->
+<div class="group flex items-center gap-4 p-4 bg-surface rounded-xl hover:shadow-lg transition-all duration-300 cursor-pointer border border-transparent hover:border-primary-fixed">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A lush Fiddle Leaf Fig plant standing in a minimalist ceramic pot against a cream-colored wall. The photo is bright and airy with warm daylight, focusing on the large, waxy violin-shaped leaves and their detailed veins." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6BwBg-ZAQymHau_aJqQILxlJd9K1aQ6B6d8C65dqYNEbhhcfQvru40AydCiY47n7jZnUtQjvMMD2YQRjYEYMzW4_3PWYaZuqfq7DfJvmCWeU1nWmEsQgH7Xi7IFaj4OKFwDCBP8cyoapB7JWx9Lup1-LcQVjWMm1ibSx66QjSc3qdbFfpqodI71u9BV94yYlCkJ46SdQsuRrqqC_qute16kJkkekgcAzgFE8r-liBNSp_vhEG6NwlGN2GNHJlIv0L5suzmYo1hJc"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-primary">Fiddle Leaf Fig</h4>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded font-label-sm text-label-sm">Standard Cycle</span>
+</div>
+<div class="flex gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span class="text-label-sm">Last: Apr 28</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="text-label-sm font-bold">Next: June 05</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">Mark Done</button>
+</div>
+<!-- Plant Item 3 -->
+<div class="group flex items-center gap-4 p-4 bg-surface rounded-xl hover:shadow-lg transition-all duration-300 cursor-pointer border border-transparent hover:border-primary-fixed">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Macro photography of a Echeveria succulent with soft pink edges and pale blue-green leaves. The lighting is diffused and ethereal, highlighting the geometric growth pattern of the rosettes in a clean, serene environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK3WPFByBFKSxHDkEOTcehx3clV-4Qbh2QV1_pNaU_fAOHrAfzy9MSqJ31nD-S-gDp5dsJ7SMSEUtJbJ49sMMelrNkD6j7xWhiJICeyfXMSO41kxvx_tWzzeDDqYNklmh371zBf1uwFiEoPN6UxlWsbVLGy63o2vOQWx4i39cD5IaN8BuIb_3baz_LND504331uUn7HEmmPfCZ1Xo9rFdqpOt4oLHdGBB5xtLClY8oEjHAywyvacuZG0C7sq8WxE2uC039xRYs-o"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-primary">Blue Echeveria</h4>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded font-label-sm text-label-sm">Low Demand</span>
+</div>
+<div class="flex gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span class="text-label-sm">Last: Mar 10</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="text-label-sm font-bold">Next: July 12</span>
+</div>
+</div>
+</div>
+<button class="border border-outline text-primary px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-variant/20 transition-all">Mark Done</button>
+</div>
+</div>
+</section>
+<!-- Fertilization Tips Section -->
+<section class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md">
+<div class="bg-primary p-6 rounded-xl text-on-primary relative overflow-hidden">
+<span class="material-symbols-outlined text-[80px] absolute -right-4 -bottom-4 opacity-10">science</span>
+<h3 class="font-headline-md text-headline-md mb-3">Liquid Feed</h3>
+<p class="font-body-md text-body-md opacity-90 mb-4">Best for immediate nutrient delivery. Dilute to half-strength during the growing season to avoid root burn.</p>
+<div class="flex items-center gap-2 font-label-md">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span>Use every 2-4 weeks</span>
+</div>
+</div>
+<div class="bg-tertiary-container p-6 rounded-xl text-on-tertiary-container relative overflow-hidden">
+<span class="material-symbols-outlined text-[80px] absolute -right-4 -bottom-4 opacity-10">bolt</span>
+<h3 class="font-headline-md text-headline-md mb-3">Slow-Release Spikes</h3>
+<p class="font-body-md text-body-md opacity-90 mb-4">Set and forget. Provides a steady stream of minerals for up to 3 months. Ideal for large floor plants.</p>
+<div class="flex items-center gap-2 font-label-md">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span>Apply seasonally</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Stats & Insights -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Seasonal Insight Card -->
+<div class="bg-secondary-fixed text-on-secondary-fixed-variant p-6 rounded-xl">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white">thermometer</span>
+</div>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Seasonal Focus: Spring</h3>
+</div>
+<p class="font-body-md text-body-md mb-4 font-medium">Growth is peaking. Plants are hungrier for Nitrogen (N) to develop strong leaves and foliage.</p>
+<div class="h-2 bg-on-secondary-fixed/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4"></div>
+</div>
+<p class="text-label-sm mt-2 opacity-80">75% of your collection is active</p>
+</div>
+<!-- Growth Tracker Small Card -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-wider">Health Trends</h3>
+<div class="flex items-end gap-2 h-32 mb-4">
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[40%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-lg h-[60%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-lg h-[50%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-lg h-[80%]"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[95%]"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Successful fertilization cycles are up 22% this month.</p>
+</div>
+<!-- Fertilizer Types Quick Guide -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-surface-variant">
+<h3 class="font-headline-md text-[18px] text-primary mb-4">Guide: The N-P-K Ratio</h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">N</span>
+<div>
+<p class="font-label-md text-label-md text-primary">Nitrogen</p>
+<p class="text-label-sm text-on-surface-variant">Leaf and stem growth.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<span class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold text-xs">P</span>
+<div>
+<p class="font-label-md text-label-md text-primary">Phosphorus</p>
+<p class="text-label-sm text-on-surface-variant">Root and flower development.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<span class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-xs">K</span>
+<div>
+<p class="font-label-md text-label-md text-primary">Potassium</p>
+<p class="text-label-sm text-on-surface-variant">Overall plant health & immunity.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span class="absolute right-16 bg-primary text-on-primary px-3 py-1 rounded-lg text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Add Feeding</span>
+</button>
+<!-- Bottom Navigation Mobile Only -->
+<nav class="md:hidden glass-nav bg-surface/80 fixed bottom-0 left-0 right-0 py-3 px-6 flex justify-between items-center z-50 border-t border-outline-variant/30">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../plant_care_dashboard_overview/code.html">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="text-[10px] font-label-sm">Collection</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="text-[10px] font-label-sm">Water</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary font-bold" href="./code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-[10px] font-label-sm">Fertilize</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-sm">Settings</span>
+</a>
+</nav>
+</main>
+<script>
+        // Simple micro-interaction for mark done buttons
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText === 'Mark Done') {
+                btn.addEventListener('click', function() {
+                    this.innerText = 'Completed';
+                    this.classList.remove('bg-primary');
+                    this.classList.add('bg-primary-fixed', 'text-primary');
+                    this.closest('.group').style.opacity = '0.6';
+                });
+            }
+        });
+    </script>
+</body></html>

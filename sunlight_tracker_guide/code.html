@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PlantParent | Sunlight Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad5",
+                    "inverse-primary": "#a9cfb7",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary-fixed-variant": "#354c41",
+                    "on-secondary-container": "#76300d",
+                    "secondary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "on-tertiary-container": "#a4bdaf",
+                    "on-surface": "#1b1c19",
+                    "on-primary-container": "#9ac0a7",
+                    "secondary-fixed": "#ffdbcd",
+                    "outline-variant": "#c1c8c1",
+                    "surface-container-low": "#f5f3ee",
+                    "secondary-container": "#fd9a6f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "primary": "#163826",
+                    "on-primary-fixed-variant": "#2c4e3b",
+                    "tertiary": "#20362d",
+                    "on-background": "#1b1c19",
+                    "surface-tint": "#436651",
+                    "surface": "#fbf9f4",
+                    "primary-fixed": "#c5ecd2",
+                    "primary-container": "#2d4f3c",
+                    "outline": "#727973",
+                    "surface-variant": "#e4e2dd",
+                    "surface-container-highest": "#e4e2dd",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#364d42",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "surface-container-high": "#eae8e3",
+                    "on-secondary-fixed": "#360f00",
+                    "secondary": "#964824",
+                    "on-primary-fixed": "#002112",
+                    "on-surface-variant": "#424843",
+                    "tertiary-fixed-dim": "#b3ccbf",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#cee9da",
+                    "on-tertiary-fixed": "#092017",
+                    "inverse-surface": "#30312e",
+                    "error": "#ba1a1a",
+                    "background": "#fbf9f4",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "container-padding-desktop": "40px",
+                    "unit": "8px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "headline-md": ["Noto Serif"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "display": ["Noto Serif"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Noto Serif"],
+                    "headline-lg": ["Noto Serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f4;
+            color: #1b1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+        }
+        .sun-meter-track {
+            height: 12px;
+            background: #EFEDE8;
+            border-radius: 99px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sun-meter-fill {
+            height: 100%;
+            border-radius: 99px;
+            transition: width 1s ease-out;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .organic-asymmetric {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen py-8 px-4 gap-stack-md bg-surface-container dark:bg-surface-container-high h-full w-64 fixed left-0 top-0 z-50">
+<div class="px-4 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PlantParent</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-80">Nurtured Growth</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/40 transition-all group" href="../plant_care_dashboard_overview/code.html">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="font-label-md text-label-md">My Collection</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/40 transition-all group" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">auto_schedule</span>
+<span class="font-label-md text-label-md">Watering Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl translate-x-1 duration-200" href="./code.html">
+<span class="material-symbols-outlined">light_mode</span>
+<span class="font-label-md text-label-md">Sunlight Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/40 transition-all group" href="../fertilization_reminders/code.html">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-label-md text-label-md">Fertilization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-all group mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 transition-all duration-300">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface/80 glass-nav border-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="relative group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="hidden lg:block bg-surface-container-low border-none rounded-full px-10 py-2 text-label-md focus:ring-2 focus:ring-primary w-64 transition-all duration-300" placeholder="Search plants..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-variant/20 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional and warm studio portrait of a botanist in her thirties, wearing a clean linen apron, surrounded by lush green monstera leaves. The lighting is soft and natural, with a warm cream and sage green background consistent with a high-end editorial lifestyle magazine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG9xMlBbIImFaJqsIp9-EKBwTPGXBu9ygNEc-lpU9j6GwRA_AJ3FOz-frouOfsos9n3ojVRSchqX9TzaCMUjEUo_jiTwyQzS0QoqlNjtxW0e46skJgbInN_Pt9FsQePKRrG6mqHw0MCwJ7t5poHX_QWc0Jxki5Cn-vPV_GTR2KVxxMuvW1SsdFIa4D3PgYkLqoxth0gFEYNnuCQvqZXh3JZ7YUXHzlg7sZ3QaUDLsVGYOsldvw05oXJ0S6-ymenz7lzRlyp4dl6ss"/>
+</div>
+</div>
+</div>
+</header>
+<div class="px-container-padding-mobile md:px-container-padding-desktop py-stack-lg max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-stack-lg animate-in fade-in slide-in-from-bottom-4 duration-700">
+<h2 class="font-display text-display mb-stack-sm text-primary">Sunlight Exposure Guide</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                        Understanding how light travels through your home is the key to a thriving indoor garden. Align your collection with the natural rhythm of the sun.
+                    </p>
+</section>
+<!-- Placement Intelligence Bento -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-stack-lg">
+<!-- North/South Guide -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 flex flex-col justify-between">
+<div>
+<span class="px-4 py-1 bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider mb-4 inline-block">Pro Tip</span>
+<h3 class="font-headline-md text-headline-md mb-4 text-primary">The Orientation Secret</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">North-facing windows provide consistent but weak light, perfect for low-light lovers. South-facing windows offer the most intense, direct rays.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex-1 p-4 bg-surface rounded-2xl border border-outline-variant/30">
+<p class="font-label-md text-primary mb-1">North Window</p>
+<p class="text-label-sm text-on-surface-variant">Cool, indirect glow</p>
+</div>
+<div class="flex-1 p-4 bg-surface rounded-2xl border border-outline-variant/30">
+<p class="font-label-md text-secondary mb-1">South Window</p>
+<p class="text-label-sm text-on-surface-variant">Hot, direct energy</p>
+</div>
+</div>
+</div>
+<!-- Visual Anchor -->
+<div class="relative h-64 md:h-full rounded-[2rem] overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="A serene, minimalist living room with large floor-to-ceiling windows showing soft morning sunlight filtering through translucent curtains. Potted plants of various heights are strategically placed in pools of light and shadow, creating a peaceful, organic atmosphere with a soft clay and moss green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7tsvw35j3xWlKbBVC-V2M3TxsjWQRs_2oLWAtbJcuDVjCktoM8uewkUYitYEJiG2XXhtIDwpxhbNXBtiTOlDZAL15jMcSfqXNCUQVQ3hAIsUlaBxOcJkBMGFDh2_C11yF1FrhisDhL87qaB-v47gx4YJ59wUMEpWpDPGcNYuA03zRhBtkpPDZU1Zv0ddniapnswpeeqHQ5pzEF_sfpicHpFAoiZ71NwpUdxacGDG0T6fdHBqgeKHgMhvShx4taiok5sFHwC5XVig"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<p class="font-headline-md">Morning Radiance</p>
+<p class="font-label-sm opacity-80 text-white">Best for East-facing placements</p>
+</div>
+</div>
+</section>
+<!-- Sunlight Categories -->
+<div class="flex flex-col gap-12">
+<!-- Direct Sun Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">light_mode</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Direct Sun</h3>
+<p class="text-label-md text-on-surface-variant">4-6+ hours of intense, unshielded light.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A close-up photograph of a vibrant Aloe Vera plant in a terracotta pot. The sun is shining directly on its thick, prickly leaves, highlighting their juicy texture and bright green color. The lighting is high-contrast and warm, evoking a hot desert sun environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAla17I6WWLrgABUEs94dsrdMn6Z-jFil6HDjZjYoY_fpKNNghBAYD_bNS1oKT-BV97sCIH5yNczqPNfnKa-6s5FxK12-5ipG-K8fJfBsLGkT_1cFWygTbQKlukFV-E1GvfrCIQgKbgV-3StURV127BiwyJ1WQx9gv2iXTRPTmoqcsXAvK-vadRI9y1xzoa9zVqEogJCSxFO4Dj6Z06_GbBmWX4pa-6cXNe4shrPSPgSI3vN6GDeSFwXzID2RzEnx2xVK6O_j6H4i4"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Aloe Vera</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-secondary font-bold">High</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-secondary-container" style="width: 90%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Place directly on a South-facing windowsill. Loves the heat and high intensity rays.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A tall, structural Fiddle Leaf Fig tree in a designer ceramic pot. It is positioned right next to a large sunny window with direct sunlight hitting the top leaves. The scene is bright and airy with a sophisticated, minimalist interior design feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgW6rr88SGRlYr_7xo4n51Khy8a1_6xF4j9hJHS7WO5FPkk5TAjQ_eM1AgO9q-GXj0Z5E565o4Y6NcKn1OOXAgov45ioJtc5bv8TzqJGZLB_u1tXYN8DVahZZhbiTumtmhgOM98opcZQOSmRfE0OapCERsX1_eaum6VyVim1GiD2V24dp5tF5tvlzAXwXuVYIGoIoeUsMvYhhpQFmIq3BtcJVn5RbP3bzUpoAD7yoWFn3u76HOoevlazFFvurB4yOW4kROi3BGPCA"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Fiddle Leaf Fig</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-secondary font-bold">High</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-secondary-container" style="width: 80%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Needs lots of light to maintain those large leaves. South or West windows are best.</p>
+</div>
+</div>
+</section>
+<!-- Bright Indirect Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">wb_twilight</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Bright Indirect</h3>
+<p class="text-label-md text-on-surface-variant">Dappled light or just out of direct rays.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 3 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A lush Monstera Deliciosa with large Swiss cheese-like holes in its leaves. It is sitting in a room with bright, soft, diffused light, creating gentle shadows on the background wall. The aesthetic is organic, fresh, and vibrant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyK5oIaDXoI-rJ1IdK3e0kcrmrs9y24NytCCS5M5BwVYXJorrAiraT6LoYO9AUn0LC-w1HuiK4BvcL8UfJoqeNgh_RpyF4e7RKpiiCYIPAD-l-ak5qZpc4BjdvKC8GgN81_j2UN2efmugCnUkA4VbOmsslwW26Hf-mr94XCZcjxLq8iXybvEjRF6s-3pNi5oPwCX0NzooUTOof92sXw2NEIZ6mg7uybLncbEpuHcXQNtKKeY7ZCDHDzJXbsp1aRy5QZY_8DlG1Obg"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Monstera</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-primary font-bold">Medium</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-primary" style="width: 60%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">3-5 feet away from a South window or right by an East window. No direct scorch.</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A delicate Marble Queen Pothos trailing gracefully from a hanging macrame planter. The variegated white and green leaves are illuminated by soft, bright indirect light from a nearby window. The atmosphere is calm and peaceful." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpIDceQ3qb1KdDEI7gHcArFJdzEcz41qPXhNjeJozQe0M09fIwQs8Du_6SYSObV9c_3EPyERAXVTmmptFp3Osg16JCdhAAZ_E131NyzAFZfz0JJ5ftfBkU9HMRsZ5xutG6Pa5Mwmpw1Y0bnENWAhpRD9X8_KsuVqTiqhsSB7d09KFmshkrvveRFED9V87TuCf-TENdAoTKCHMdD9i04si2cEyi2VAZNOQb1B33Nz64udh7icdPNnEqj0Zadc2TZ66TONR7d4xOjvY"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Marble Queen Pothos</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-primary font-bold">Medium</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-primary" style="width: 50%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Adaptable, but needs brightness to keep its white variegation. Great for shelves.</p>
+</div>
+</div>
+</section>
+<!-- Low Light Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">filter_drama</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Low Light</h3>
+<p class="text-label-md text-on-surface-variant">Dim areas or North-facing consistency.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 5 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A deep green Snake Plant with tall, architectural leaves standing in a dimly lit corner of a modern bedroom. The mood is moody and serene, highlighting the plant's ability to thrive in low-light environments. Tonal layering of greys and soft creams." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbLKDFTb3cGtAgH4FamM9gfDr24RCn5tMwm32qwGi7tk17hNEmDa6u6XeRIZpAh56lo-X-W3ZY4jWffcWL1KG7Ls8PS2UvFn73ntweS2RVLN6o83Yi8sVvWkoYhQc6O353ZLFp5JCoGp5Q7MugsF417SBupc0kSrHFQq7Qo_XDo7T22UwPos7CYNdDY-KqKBF23vQhq4hSMoox3Xc5Ct3eq6WuyClK1-w67MfwXN6InRnJdYO-9r2P71386nXL8vjwV83wNqKG-HQ"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Snake Plant</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-tertiary-fixed-dim font-bold">Low</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-tertiary" style="width: 20%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Perfect for hallways or North-facing rooms. Thrives in neglect and low energy.</p>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface rounded-3xl p-6 border border-surface-variant transition-all hover:shadow-lg hover:-translate-y-1">
+<div class="w-full aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A glossy ZZ plant with waxy dark green leaves in a minimalist black pot. The plant is positioned in a deep interior corner of a stylish office space with minimal natural light. High-end editorial style, moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABtKV3ZYBcMqFp5_br1qZaW0YSP_DiwCrEQSi4YmkRATWvPTpRYmi_j1s7MG_4T50EdoHQlKKnqcyeQeMJqaxfj4Op_dYxw25wddXZJdV70A5zTDyxWAynqTSmBKIutcdyGDFTvxNVQpRf8X9mpo8KV6AUUH6MzlgYoDifhgf7LtrM0vVKsjlJ4Y-XCFk6BXcvs5goy-MjGWBvCbfMRoJI8rkg_yX8S26PyFo4BkULuisWr-l8tXhotJwj9LVv7NZ3Ld3qttFt_2w"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">ZZ Plant</h4>
+<div class="mb-4">
+<div class="flex justify-between text-label-sm mb-2 text-on-surface-variant">
+<span>Sunlight Meter</span>
+<span class="text-tertiary-fixed-dim font-bold">Low</span>
+</div>
+<div class="sun-meter-track">
+<div class="sun-meter-fill bg-tertiary" style="width: 15%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">The champion of dim rooms. Can survive far away from any window source.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Summary Card -->
+<div class="mt-stack-lg p-10 bg-primary rounded-[2.5rem] text-on-primary relative overflow-hidden">
+<div class="relative z-10 max-w-xl">
+<h2 class="font-display text-[32px] mb-4">Still Unsure?</h2>
+<p class="font-body-md opacity-90 mb-8 leading-relaxed">Light changes with the seasons. A South window in winter might be perfect, but too hot in summer. Use our daily light tracker to record your plant's energy absorption over 24 hours.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-full font-label-md hover:bg-primary-fixed transition-colors active:scale-95 duration-150">Start Light Log</button>
+</div>
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container organic-asymmetric opacity-50 blur-3xl"></div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile BottomNavBar -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md px-6 py-3 flex justify-around items-center border-t border-outline-variant/10">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../plant_care_dashboard_overview/code.html">
+<span class="material-symbols-outlined">potted_plant</span>
+<span class="text-[10px] font-label-sm">Collection</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="../watering_schedule/code.html">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="text-[10px] font-label-sm">Schedule</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary font-bold" href="./code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span class="text-[10px] font-label-sm">Sunlight</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-sm">Settings</span>
+</a>
+</div>
+<script>
+        // Micro-interactions for sunlight meters
+        document.addEventListener('DOMContentLoaded', () => {
+            const fills = document.querySelectorAll('.sun-meter-fill');
+            fills.forEach(fill => {
+                const targetWidth = fill.style.width;
+                fill.style.width = '0%';
+                setTimeout(() => {
+                    fill.style.width = targetWidth;
+                }, 300);
+            });
+        });
+    </script>
+</body></html>
